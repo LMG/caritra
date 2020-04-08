@@ -1,8 +1,8 @@
-package com.example.caritra
+package fr.givel.caritra
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.caritra.ui.main.MainFragment
+import fr.givel.caritra.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 

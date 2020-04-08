@@ -1,4 +1,4 @@
-package com.example.caritra.ui.main
+package fr.givel.caritra.ui.main
 
 import androidx.lifecycle.ViewModel
 

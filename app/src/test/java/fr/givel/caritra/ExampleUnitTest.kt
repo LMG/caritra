@@ -1,4 +1,4 @@
-package com.example.caritra
+package fr.givel.caritra
 
 import org.junit.Test
 
