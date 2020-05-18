@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">caritra</string>
+    <string name="low_option">bad</string>
+    <string name="high_option">good</string>
+    <string name="validate">save mood</string>
+    <string name="done">done</string>
 </resources>
