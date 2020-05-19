@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.RadioButton
 import com.google.android.material.snackbar.Snackbar
+// Allows us to access the elements by their id directly
+// Note: not cached, will call findViewById every time
+import kotlinx.android.synthetic.main.main_fragment.*
 import fr.givel.caritra.R
 
 class MainFragment : Fragment(), View.OnClickListener  {
@@ -22,10 +25,14 @@ class MainFragment : Fragment(), View.OnClickListener  {
                               savedInstanceState: Bundle?): View {
         var view : View = inflater.inflate(R.layout.main_fragment, container, false)
 
-        var button: Button = view.findViewById(R.id.button_validate)
-        button.setOnClickListener(this);
-
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Doing it in onCreateView is too early because findViewById returns NULL
+        button_validate.setOnClickListener(this)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -35,7 +42,7 @@ class MainFragment : Fragment(), View.OnClickListener  {
     }
 
     /**
-     * Manages the clicks on the fragement elements
+     * Manages the clicks on the fragment elements
      */
     override fun onClick(view: View){
         when (view.id) {
@@ -48,12 +55,17 @@ class MainFragment : Fragment(), View.OnClickListener  {
      */
     private fun onFormCompleted(view: View){
         // Find selected option
-        //var selected = findViewById(R.id.radioGroup)
+        var buttonId = radioGroup.checkedRadioButtonId
+        var selected  = "none"
+        if (buttonId != 0)
+        {
+            selected = radioGroup.findViewById<RadioButton>(buttonId).text.toString()
+        }
 
         // Notify it
         Snackbar.make(
             view,
-            getString(R.string.done),
+            getString(R.string.done) + " " + selected,
             Snackbar.LENGTH_SHORT
         ).show()
 

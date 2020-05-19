@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".ui.main.MainFragment">
 
-    <!-- This button OnClick is managed directly by the fragement code-->
+    <!-- This button OnClick is managed directly by the fragment code-->
     <Button
         android:id="@+id/button_validate"
         android:layout_width="wrap_content"
