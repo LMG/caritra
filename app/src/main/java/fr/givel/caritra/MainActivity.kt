@@ -18,22 +18,4 @@ class MainActivity : AppCompatActivity() {
                     .commitNow()
         }
     }
-
-    /**
-     * Shows a message when the form has been completed by the user
-     */
-
-    fun onFormCompleted(view: View){
-        // Find selected option
-        //var selected = findViewById(R.id.radioGroup)
-
-        // Notify it
-        Snackbar.make(
-            view,
-            getString(R.string.done),
-            Snackbar.LENGTH_SHORT
-        ).show()
-
-        //TODO: save in database
-    }
 }
