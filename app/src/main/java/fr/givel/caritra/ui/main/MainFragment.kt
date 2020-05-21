@@ -1,13 +1,14 @@
 package fr.givel.caritra.ui.main
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
+import fr.givel.caritra.DataPoint
 // Allows us to access the elements by their id directly
 // Note: not cached, will call findViewById every time
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -18,6 +19,9 @@ class MainFragment : Fragment(), View.OnClickListener  {
     companion object {
         fun newInstance() = MainFragment()
     }
+
+    // Public variable to update the database content (for testing only)
+    var contents = ""
 
     private lateinit var viewModel: MainViewModel
 
@@ -37,8 +41,7 @@ class MainFragment : Fragment(), View.OnClickListener  {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
     /**
@@ -62,13 +65,16 @@ class MainFragment : Fragment(), View.OnClickListener  {
             selected = radioGroup.findViewById<RadioButton>(buttonId).text.toString()
         }
 
+        contents = viewModel.allDataPoints.value?.joinToString() ?: "fail"
+
         // Notify it
         Snackbar.make(
             view,
-            getString(R.string.done) + " " + selected,
+            getString(R.string.done) + " " + selected + contents,
             Snackbar.LENGTH_SHORT
         ).show()
 
-        //TODO: save in database
+        // Save in database
+        viewModel.insert(DataPoint(10))
     }
 }
