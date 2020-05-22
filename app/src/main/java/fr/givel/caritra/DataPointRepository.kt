@@ -13,7 +13,7 @@ class DataPointRepository (private val dataPointDAO: DataPointDAO)
     // if we observe it, we will be notified when it changes
     val allDataPoints: LiveData<List<DataPoint>> = dataPointDAO.getDataPoints()
 
-    suspend fun insert(dataPoint: DataPoint) {
-        dataPointDAO.insert(dataPoint)
+    suspend fun insert(dataPoint: DataPoint):Long {
+        return dataPointDAO.insert(dataPoint)
     }
 }

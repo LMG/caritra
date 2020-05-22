@@ -65,8 +65,6 @@ class MainFragment : Fragment(), View.OnClickListener  {
             selected = radioGroup.findViewById<RadioButton>(buttonId).text.toString()
         }
 
-        contents = viewModel.allDataPoints.value?.joinToString() ?: "fail"
-
         // Notify it
         Snackbar.make(
             view,

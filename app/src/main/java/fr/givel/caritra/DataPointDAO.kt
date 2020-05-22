@@ -15,7 +15,7 @@ interface DataPointDAO {
     fun getDataPoints(): LiveData<List<DataPoint>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(dataPoint: DataPoint)
+    suspend fun insert(dataPoint: DataPoint):Long
 
     @Query("DELETE FROM dataPoint_table")
     suspend fun deleteAll()
